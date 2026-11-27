@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, MotionConfig, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 const DASHBOARD = "https://dashboard.ambitio.club/";
@@ -60,28 +61,13 @@ function Hero() {
 }
 
 function DecisionArt({ index }: { index: number }) {
-  const labels = ["A question", "The people", "The place", "The plan"];
-  return <div className={`decision-art decision-art--${index}`} aria-hidden="true">
-    <svg viewBox="0 0 640 420" preserveAspectRatio="xMidYMid meet" fill="none">
-      <defs><linearGradient id="decision-floor" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#edf6fb" /><stop offset="1" stopColor="#b6d9e8" /></linearGradient><filter id="decision-shadow"><feDropShadow dx="0" dy="15" stdDeviation="13" floodColor="#23517c" floodOpacity=".18" /></filter></defs>
-      <path d="M53 246 319 96 589 247 320 397Z" fill="url(#decision-floor)" stroke="#a7cce0" strokeWidth="2" />
-      <path d="m90 252 229-130 232 130-231 130Z" stroke="#fff" strokeOpacity=".72" strokeWidth="2" />
-      <path d="M151 249 251 194 321 231 397 189 491 242" stroke="#2871aa" strokeWidth="5" strokeLinecap="round" strokeDasharray="12 12" />
-      <g className={index === 0 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
-        <path d="m91 245 62-35 64 36-63 36Z" fill="#fff" /><path d="m91 245 63 37v33l-63-37Z" fill="#a9c9ed" /><path d="m154 282 63-36v33l-63 36Z" fill="#6b9bd5" /><path d="m115 248 39-22 40 22-40 22Z" fill="#dbeafb" /><path d="m138 242 17-9 16 9-16 10Z" fill="#2763b1" />
-      </g>
-      <g className={index === 1 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
-        <path d="m223 180 59-33 61 34-61 35Z" fill="#fff" /><path d="m223 180 59 36v33l-59-35Z" fill="#a9d5dc" /><path d="m282 216 61-35v33l-61 35Z" fill="#4c98a8" /><circle cx="282" cy="183" r="15" fill="#2d718b" /><circle cx="263" cy="190" r="8" fill="#89c3ce" /><circle cx="301" cy="192" r="8" fill="#89c3ce" />
-      </g>
-      <g className={index === 2 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
-        <path d="m351 183 61-34 67 38-63 36Z" fill="#fff" /><path d="m351 183 65 40v47l-65-39Z" fill="#b8c9eb" /><path d="m416 223 63-36v47l-63 36Z" fill="#617fb8" /><path d="m374 175 37-21 42 24-38 22Z" fill="#dce8fa" /><path d="M387 204v22m18-13v24m23-20v23m17-32v22" stroke="#315c9b" strokeWidth="5" />
-      </g>
-      <g className={index === 3 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
-        <path d="m456 251 54-31 59 33-56 34Z" fill="#fff" /><path d="m456 251 57 36v35l-57-35Z" fill="#f1cba8" /><path d="m513 287 56-34v35l-56 34Z" fill="#d88c5a" /><path d="m482 254 29-17 31 18-30 17Z" fill="#f6e0b8" /><path d="M511 247v15m-8-9h16" stroke="#a66032" strokeWidth="4" />
-      </g>
-      <circle cx={[151, 282, 416, 513][index]} cy={[248, 183, 186, 253][index]} r="42" fill="#fff" fillOpacity=".2" stroke="#fff" strokeWidth="2" className="decision-art__halo" />
-    </svg><div className="decision-art__label"><span>{`0${index + 1}`}</span>{labels[index]}</div>
-  </div>;
+  const images = [
+    "/assets/journey/research-direction-cutout.png",
+    "/assets/journey/research-people-cutout.png",
+    "/assets/journey/research-place-cutout.png",
+    "/assets/journey/research-plan-cutout.png",
+  ];
+  return <div className="decision-art" aria-hidden="true"><Image className="decision-art__image" src={images[index]} alt="" width={1536} height={1024} sizes="(max-width: 640px) calc(100vw - 40px), 50vw" draggable={false} /></div>;
 }
 function Challenge() {
   const ref = useRef<HTMLElement>(null);
@@ -90,7 +76,7 @@ function Challenge() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   useMotionValueEvent(scrollYProgress, "change", value => setActive(Math.min(3, Math.floor(value * 4))));
   const current = decisions[active];
-  return <section className={`challenge ${reduced ? "challenge--reduced" : ""}`} ref={ref} id="challenge" aria-labelledby="challenge-title" data-section="challenge"><div className="challenge__pin"><div className="wrap challenge__inner"><div className="challenge__heading"><h2 id="challenge-title">A PhD search is<br />never just a search.</h2><p>Four connected decisions shape the path ahead.</p></div><div className="challenge__stage"><div className="challenge__visual"><AnimatePresence mode="wait" initial={false}><motion.div key={active} className="challenge__art-wrap" initial={{ opacity: 0, scale: .94 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} transition={{ duration: .42, ease: EASE }}><DecisionArt index={active} /></motion.div></AnimatePresence></div><div className="challenge__content"><span className="challenge__count">{current.mark} / 04</span><AnimatePresence mode="wait" initial={false}><motion.div key={active} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} transition={{ duration: .38, ease: EASE }}><h3>{current.title}</h3><p>{current.body}</p></motion.div></AnimatePresence><div className="challenge__rail" aria-label="Four decisions">{decisions.map((item, i) => <span key={item.mark} className={i === active ? "is-active" : ""} title={item.tag} />)}</div></div></div></div></div></section>;
+  return <section className={`challenge ${reduced ? "challenge--reduced" : ""}`} ref={ref} id="challenge" aria-labelledby="challenge-title" data-section="challenge"><div className="challenge__pin"><div className="wrap challenge__inner"><div className="challenge__heading"><h2 id="challenge-title">A PhD search is<br />never just a search.</h2><p>Four connected decisions shape the path ahead.</p></div><div className="challenge__stage"><div className="challenge__visual"><AnimatePresence mode="wait" initial={false}><motion.div key={active} className="challenge__art-wrap" initial={reduced ? false : { opacity: 0, y: 20, scale: .96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduced ? { opacity: 0 } : { opacity: 0, y: -18, scale: 1.03 }} transition={{ duration: reduced ? 0 : .5, ease: EASE }}><DecisionArt index={active} /></motion.div></AnimatePresence></div><div className="challenge__content"><span className="challenge__count">{current.mark} / 04</span><AnimatePresence mode="wait" initial={false}><motion.div key={active} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} transition={{ duration: .38, ease: EASE }}><h3>{current.title}</h3><p>{current.body}</p></motion.div></AnimatePresence><div className="challenge__rail" aria-label="Four decisions">{decisions.map((item, i) => <span key={item.mark} className={i === active ? "is-active" : ""} title={item.tag} />)}</div></div></div></div></div></section>;
 }
 
 function Finders() {

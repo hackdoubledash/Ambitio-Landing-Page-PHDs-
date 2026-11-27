@@ -143,3 +143,99 @@ svg{width:1em;height:1em;stroke:currentColor;stroke-width:1.8;stroke-linecap:rou
   .faq h2{font-size:clamp(45px,10vw,60px)}
 }
 @media(prefers-reduced-motion:reduce){.decision-art__piece,.finders__steps button,.planning__cards,.planning__card{transition:none}}
+
+/* Shared spacing rhythm: 8 / 16 / 24 / 32 / 48 / 64 / 96 / 128. */
+:root{
+  --space-2:16px;
+  --space-3:24px;
+  --space-4:32px;
+  --space-5:48px;
+  --space-6:64px;
+  --space-7:96px;
+  --space-8:128px;
+}
+
+.hero__copy{padding-top:clamp(128px,15svh,176px)}
+.hero__copy>p{margin-top:var(--space-3)}
+.hero__actions{margin-top:var(--space-4);gap:var(--space-3)}
+
+.challenge__inner,.finders__inner{padding-top:var(--space-8);padding-bottom:var(--space-6)}
+.challenge__heading,.finders__stage{gap:var(--space-6)}
+.challenge__count{margin-bottom:var(--space-3)}
+.challenge__content p,.finders__copy p{margin-top:var(--space-3)}
+.challenge__rail{margin-top:var(--space-4)}
+.finders__header p{margin-top:var(--space-3)}
+.finders__steps{margin-top:var(--space-5)}
+.finders__product{width:min(100%,calc((100svh - 350px)*2));justify-self:center}
+
+.detail__inner{padding-top:var(--space-8);padding-bottom:var(--space-7);gap:var(--space-6)}
+.detail__heading{gap:var(--space-6)}
+
+.profile__inner{padding-top:var(--space-8);padding-bottom:var(--space-7);gap:var(--space-6)}
+.profile__copy p{margin-top:var(--space-3);margin-bottom:var(--space-4)}
+.profile__cards{gap:var(--space-3)}
+.profile__card{padding:var(--space-2)}
+.profile__card>div:last-child{padding:var(--space-2) 6px 4px}
+
+.planning__inner{padding-top:var(--space-8);padding-bottom:var(--space-7)}
+.planning__top{gap:var(--space-6)}
+.planning__cards{margin-top:var(--space-5);gap:var(--space-3)}
+.planning__card{padding:var(--space-3);gap:var(--space-3)}
+.planning__note{margin-top:var(--space-3)}
+
+.faq__inner{padding-top:var(--space-8);padding-bottom:var(--space-7);gap:var(--space-6)}
+.faq__inner>div:first-child{padding-top:0}
+.faq__inner>div:first-child p{margin-top:var(--space-3)}
+.faq__item button{padding:var(--space-3) 0}
+.faq__item p{padding-bottom:var(--space-3)}
+
+.footer{padding-top:var(--space-7)}
+.footer__top{gap:var(--space-6);padding-bottom:var(--space-7)}
+.footer__links{gap:var(--space-4);padding:var(--space-7) 0}
+.footer__links strong{margin-bottom:var(--space-3)}
+.footer__links a{margin-bottom:var(--space-2)}
+.footer__wordmark{margin-bottom:var(--space-6)}
+
+@media(max-width:760px){
+  .challenge__inner,.finders__inner{padding-top:112px;padding-bottom:var(--space-5)}
+  .challenge__stage,.finders__stage{gap:var(--space-4)}
+  .finders__product{width:min(100%,660px)}
+  .detail__inner,.profile__inner,.planning__inner,.faq__inner{padding-top:112px;padding-bottom:var(--space-7)}
+  .profile__inner{gap:var(--space-5)}
+  .planning__cards{gap:var(--space-2)}
+  .planning__card{padding:var(--space-2)}
+  .faq__inner{gap:var(--space-5)}
+  .footer__links{gap:var(--space-5) var(--space-3)}
+}
+
+@media(max-width:640px){
+  .hero__copy{padding-top:124px}
+  .hero__copy>p{margin-top:var(--space-3)}
+  .hero__actions{margin-top:var(--space-4);gap:var(--space-2)}
+  .challenge__inner,.finders__inner{padding-top:112px;padding-bottom:var(--space-4)}
+  .challenge__heading p,.finders__header p{margin-top:var(--space-2)}
+  .challenge__stage{gap:var(--space-3);margin-top:var(--space-3)}
+  .challenge__content p,.finders__copy p{margin-top:var(--space-2)}
+  .challenge__rail{margin-top:var(--space-3)}
+  .finders__stage{gap:var(--space-4)}
+  .finders__header{margin-bottom:var(--space-3)}
+  .finders__steps{margin-top:var(--space-3)}
+  .finders__steps button span{font-size:11px;border:0;padding:0;color:inherit}
+  .detail__inner,.profile__inner,.planning__inner,.faq__inner{padding-top:112px;padding-bottom:var(--space-7)}
+  .detail__inner{gap:var(--space-5)}
+  .detail__heading p,.profile__copy p,.planning__top p{margin-top:var(--space-3)}
+  .profile__cards{margin-top:var(--space-5);gap:var(--space-3)}
+  .planning__cards,.planning__cards--active-0,.planning__cards--active-1{margin-top:var(--space-4);gap:var(--space-2)}
+  .planning__card{padding:var(--space-2);gap:var(--space-2)}
+  .faq__inner{gap:var(--space-5)}
+  .footer{padding-top:var(--space-7)}
+  .footer__top{padding-bottom:var(--space-6)}
+  .footer__links{padding:var(--space-6) 0 var(--space-7)}
+  .footer__wordmark{margin-bottom:var(--space-6)}
+}
+
+/* Transparent chapter artwork keeps its native ratio on the section canvas. */
+.challenge__visual{width:min(100%,calc(52svh * 1.5),645px);height:auto;aspect-ratio:3 / 2;background:transparent;border:0;border-radius:0;overflow:visible;justify-self:center}
+.decision-art{display:block}
+.decision-art__image{display:block;width:100%;height:100%;object-fit:contain}
+@media(max-width:640px){.challenge__visual{width:100%;height:auto;aspect-ratio:3 / 2}}
