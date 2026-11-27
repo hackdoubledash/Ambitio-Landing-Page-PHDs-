@@ -239,3 +239,89 @@ svg{width:1em;height:1em;stroke:currentColor;stroke-width:1.8;stroke-linecap:rou
 .decision-art{display:block}
 .decision-art__image{display:block;width:100%;height:100%;object-fit:contain}
 @media(max-width:640px){.challenge__visual{width:100%;height:auto;aspect-ratio:3 / 2}}
+
+/* Section 01 — Hero: one action and a clearer product preview. */
+.hero__actions{margin-top:var(--space-4)}
+.hero__product{top:64%;width:min(800px,68vw,calc((38svh - 25px)*2.08))}
+
+/* Section 03 — Finders: legible choices beside the full dashboard view. */
+.finders__stage{gap:var(--space-6)}
+.finders__steps{gap:10px;margin-top:var(--space-4);border:0}
+.finders__steps button{min-height:60px;padding:12px 16px;border:1px solid #eaf7ff5e;border-radius:13px;background:#123f67a6;backdrop-filter:blur(8px);color:#e6f5fc}
+.finders__steps button:hover{padding-left:20px;background:#f7fcff25}
+.finders__steps button.is-active{background:#f8fbfa;color:#12334c;border-color:#fff;box-shadow:0 12px 30px #123d6530}
+.finders__steps button.is-active span{color:#12334c}
+.finders__steps button.is-active b{color:#386a9a}
+.finders__steps button.is-active svg{opacity:1}
+.finders__product .product-frame{border:1px solid #eaf5f8;border-radius:17px;box-shadow:0 24px 65px #0e416d55}
+
+/* Section 05 — AI and profile: equal cards keep both real screens readable. */
+.profile{min-height:0;background:linear-gradient(180deg,#eaf4f7 0%,#f5f9f8 72%,#f8f9f6 100%);color:var(--ink)}
+.profile__inner{display:block;min-height:0;padding-top:clamp(120px,10vw,156px);padding-bottom:clamp(96px,9vw,136px)}
+.profile__intro{display:flex;align-items:end;justify-content:space-between;gap:var(--space-6)}
+.profile__intro>div{max-width:800px}
+.profile h2{max-width:780px;font-size:clamp(52px,5vw,76px)}
+.profile__intro p{max-width:610px;margin-top:var(--space-3);font-size:18px;color:#425e6b}
+.profile__intro .button{flex:none;margin-bottom:4px}
+.profile__cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);margin-top:var(--space-7)}
+.profile__card{min-width:0;width:100%;padding:0;border:1px solid #d8e4e8;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 18px 40px #234c6120;backdrop-filter:none;transition:transform .25s,box-shadow .25s}
+.profile__card:hover{transform:translateY(-2px);box-shadow:0 24px 50px #234c612a}
+.profile__card-media{padding:18px 18px 0;background:#e9f2f5}
+.profile__card-media .product-frame{border-radius:10px 10px 0 0;box-shadow:0 8px 22px #25516a1c}
+.profile__card>div.profile__card-copy{display:block;min-height:145px;padding:29px 32px 34px}
+.profile__card h3{font-size:27px;font-weight:600}
+.profile__card p{max-width:430px;margin-top:9px;font-size:15px;line-height:1.45;color:#526874}
+
+/* Section 06 — Planning: select a tool, then inspect one large intact screen. */
+.planning__inner{min-height:100svh;padding-top:clamp(120px,10vw,152px);padding-bottom:clamp(96px,9vw,136px)}
+.planning__layout{display:grid;grid-template-columns:minmax(310px,.72fr) minmax(0,1.28fr);gap:var(--space-6);align-items:center;margin-top:var(--space-6)}
+.planning__options{display:grid;gap:var(--space-2)}
+.planning__option{width:100%;min-height:145px;padding:25px 27px;text-align:left;color:#e8f2f7;background:#ffffff0d;border:1px solid #ffffff3d;border-radius:18px;transition:transform .22s,background .22s,border-color .22s,box-shadow .22s}
+.planning__option:hover{transform:translateY(-2px);background:#ffffff1c;border-color:#ffffff73}
+.planning__option.is-active{background:#f7faf9;color:#123049;border-color:#fff;box-shadow:0 20px 42px #061e3540}
+.planning__option-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:26px;font-weight:600;letter-spacing:-.045em;line-height:1.1}
+.planning__option-heading svg{width:20px;height:20px;flex:none}
+.planning__option-body{display:block;max-width:340px;margin-top:14px;font-size:15px;line-height:1.4;color:#c7dbe7}
+.planning__option.is-active .planning__option-body{color:#526874}
+.planning__preview{min-width:0;width:min(100%,720px);justify-self:end}
+.planning__preview .product-frame{border:1px solid #e9f2f5;border-radius:18px;box-shadow:0 30px 70px #071c315c}
+.planning__note{margin-top:var(--space-2);font-size:13px;line-height:1.55;color:#cbdeea}
+.planning__note a{margin-left:0}
+
+/* Shared section spacing remains generous without shrinking product images. */
+.detail__inner{padding-top:clamp(120px,10vw,152px);padding-bottom:clamp(96px,9vw,136px)}
+.faq__inner{padding-top:clamp(120px,10vw,152px);padding-bottom:clamp(96px,9vw,136px)}
+.footer{padding-top:var(--space-8)}
+
+@media(max-width:900px){
+  .profile__intro{align-items:start;flex-direction:column;gap:var(--space-4)}
+  .profile__cards{margin-top:var(--space-6)}
+  .planning__layout{grid-template-columns:1fr;gap:var(--space-5)}
+  .planning__preview{justify-self:center}
+  .planning__options{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .planning__option{min-height:160px}
+  .planning__note{grid-column:1 / -1}
+}
+@media(max-width:640px){
+  .hero__product{top:68%;width:calc(100% - 34px)}
+  .finders__steps{gap:7px;margin-top:var(--space-3)}
+  .finders__steps button{min-height:65px;padding:10px 8px;border:1px solid #eaf7ff70;border-radius:10px;font-size:11px;line-height:1.15}
+  .finders__steps button:hover{padding-left:8px}
+  .finders__steps button.is-active{border-color:#fff}
+  .profile__inner,.planning__inner{padding-top:112px;padding-bottom:var(--space-7)}
+  .profile h2{font-size:clamp(45px,10vw,60px)}
+  .profile__intro p{font-size:16px}
+  .profile__intro .button{width:100%}
+  .profile__cards{grid-template-columns:1fr;gap:var(--space-3);margin-top:var(--space-5)}
+  .profile__card-media{padding:12px 12px 0}
+  .profile__card>div.profile__card-copy{min-height:0;padding:22px 23px 25px}
+  .profile__card h3{font-size:23px}
+  .profile__card p{font-size:14px}
+  .planning__layout{margin-top:var(--space-4);gap:var(--space-4)}
+  .planning__options{grid-template-columns:1fr;gap:10px}
+  .planning__option{min-height:0;padding:20px 21px}
+  .planning__option-heading{font-size:22px}
+  .planning__option-body{margin-top:9px;font-size:14px}
+  .planning__note{margin-top:var(--space-2)}
+  .detail__inner,.faq__inner{padding-top:112px;padding-bottom:var(--space-7)}
+}
