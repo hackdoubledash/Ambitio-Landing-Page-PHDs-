@@ -27,9 +27,15 @@ const plans = [
 
 const faqs = [
   { question: "Who is this dashboard for?", answer: "The screens shown here focus on prospective PhD applicants exploring research, programmes, supervisors, funding and applications." },
-  { question: "How does AI help?", answer: "Lisa is an in-dashboard assistant for study-abroad questions. The Research Profile Audit is presented as an AI audit of your research direction and profile." },
-  { question: "Can I use every tool?", answer: "Access depends on your account. The current Shortlist Builder and Interview Prep screens show Ambitio Elite access gates." },
-  { question: "Where do I start?", answer: "Open the dashboard to see the current experience. You can explore the finders or begin with your Research Profile Audit." },
+  { question: "What can I search in the PhD Finder?", answer: "The current finder lets you explore programmes by subject, country, PhD type and start date. Open a result to examine it in more detail." },
+  { question: "How can I find potential supervisors?", answer: "The Supervisor Finder shows faculty listings that you can explore by university, department and research focus." },
+  { question: "Can I explore funding alongside programmes?", answer: "Yes. The Funding Finder shows opportunities with filters for funding type, discipline, country and deadline, so funding can be part of your search early on." },
+  { question: "What does a programme detail page show?", answer: "The captured programme page includes research focus, eligibility, funding, supervisors and application information beyond the search result." },
+  { question: "What does the Research Profile Audit do?", answer: "The current screen presents an AI audit of your research profile and direction. The capture shows the starting screen, not a completed personal result." },
+  { question: "How can Lisa help?", answer: "Lisa is an in-dashboard assistant for study-abroad questions. You can use its chat interface as questions come up while planning your next move." },
+  { question: "Can I build a shortlist here?", answer: "The Shortlist Builder is shown in the dashboard, but the current captured screen places its programme, professor and research-position recommendations behind an Ambitio Elite gate." },
+  { question: "Is Interview Prep available?", answer: "The current Interview Prep screen advertises preparation features, including AI mock interviews and feedback, behind an Ambitio Elite access gate." },
+  { question: "Where should I start?", answer: "Open the dashboard to see your current access. You can begin by exploring the finders or opening the Research Profile Audit." },
 ];
 
 function Arrow() { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9" /></svg>; }
