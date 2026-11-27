@@ -7,3 +7,4 @@ out/
 # Mobbin captures are local design research; source links remain in the index.
 research/mobbin-reference-export/*.jpg
 .taste-skill/*.json
+.taste-skill/plan-v3.md
