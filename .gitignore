@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+.DS_Store
+*.tsbuildinfo
+
+# Mobbin captures are local design research; source links remain in the index.
+research/mobbin-reference-export/*.jpg
+.taste-skill/*.json
