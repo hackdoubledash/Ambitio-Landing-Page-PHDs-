@@ -60,7 +60,28 @@ function Hero() {
 }
 
 function DecisionArt({ index }: { index: number }) {
-  return <div className={`decision-art decision-art--${index}`} aria-hidden="true"><div className="decision-art__ring" /><div className="decision-art__hub"><span>{["?", "••", "⌂", "↗"][index]}</span></div><div className="decision-art__line decision-art__line--one" /><div className="decision-art__line decision-art__line--two" /><div className="decision-art__node decision-art__node--one" /><div className="decision-art__node decision-art__node--two" /><div className="decision-art__node decision-art__node--three" /></div>;
+  const labels = ["A question", "The people", "The place", "The plan"];
+  return <div className={`decision-art decision-art--${index}`} aria-hidden="true">
+    <svg viewBox="0 0 640 420" preserveAspectRatio="xMidYMid meet" fill="none">
+      <defs><linearGradient id="decision-floor" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#edf6fb" /><stop offset="1" stopColor="#b6d9e8" /></linearGradient><filter id="decision-shadow"><feDropShadow dx="0" dy="15" stdDeviation="13" floodColor="#23517c" floodOpacity=".18" /></filter></defs>
+      <path d="M53 246 319 96 589 247 320 397Z" fill="url(#decision-floor)" stroke="#a7cce0" strokeWidth="2" />
+      <path d="m90 252 229-130 232 130-231 130Z" stroke="#fff" strokeOpacity=".72" strokeWidth="2" />
+      <path d="M151 249 251 194 321 231 397 189 491 242" stroke="#2871aa" strokeWidth="5" strokeLinecap="round" strokeDasharray="12 12" />
+      <g className={index === 0 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
+        <path d="m91 245 62-35 64 36-63 36Z" fill="#fff" /><path d="m91 245 63 37v33l-63-37Z" fill="#a9c9ed" /><path d="m154 282 63-36v33l-63 36Z" fill="#6b9bd5" /><path d="m115 248 39-22 40 22-40 22Z" fill="#dbeafb" /><path d="m138 242 17-9 16 9-16 10Z" fill="#2763b1" />
+      </g>
+      <g className={index === 1 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
+        <path d="m223 180 59-33 61 34-61 35Z" fill="#fff" /><path d="m223 180 59 36v33l-59-35Z" fill="#a9d5dc" /><path d="m282 216 61-35v33l-61 35Z" fill="#4c98a8" /><circle cx="282" cy="183" r="15" fill="#2d718b" /><circle cx="263" cy="190" r="8" fill="#89c3ce" /><circle cx="301" cy="192" r="8" fill="#89c3ce" />
+      </g>
+      <g className={index === 2 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
+        <path d="m351 183 61-34 67 38-63 36Z" fill="#fff" /><path d="m351 183 65 40v47l-65-39Z" fill="#b8c9eb" /><path d="m416 223 63-36v47l-63 36Z" fill="#617fb8" /><path d="m374 175 37-21 42 24-38 22Z" fill="#dce8fa" /><path d="M387 204v22m18-13v24m23-20v23m17-32v22" stroke="#315c9b" strokeWidth="5" />
+      </g>
+      <g className={index === 3 ? "decision-art__piece is-active" : "decision-art__piece"} filter="url(#decision-shadow)">
+        <path d="m456 251 54-31 59 33-56 34Z" fill="#fff" /><path d="m456 251 57 36v35l-57-35Z" fill="#f1cba8" /><path d="m513 287 56-34v35l-56 34Z" fill="#d88c5a" /><path d="m482 254 29-17 31 18-30 17Z" fill="#f6e0b8" /><path d="M511 247v15m-8-9h16" stroke="#a66032" strokeWidth="4" />
+      </g>
+      <circle cx={[151, 282, 416, 513][index]} cy={[248, 183, 186, 253][index]} r="42" fill="#fff" fillOpacity=".2" stroke="#fff" strokeWidth="2" className="decision-art__halo" />
+    </svg><div className="decision-art__label"><span>{`0${index + 1}`}</span>{labels[index]}</div>
+  </div>;
 }
 function Challenge() {
   const ref = useRef<HTMLElement>(null);
@@ -79,7 +100,7 @@ function Finders() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   useMotionValueEvent(scrollYProgress, "change", value => setActive(Math.min(2, Math.floor(value * 3))));
   const current = finderViews[active];
-  return <section className={`finders ${reduced ? "finders--reduced" : ""}`} ref={ref} id="finders" aria-labelledby="finders-title" data-section="finders"><div className="finders__pin"><div className="wrap finders__inner"><div className="finders__header"><h2 id="finders-title">Explore your options.</h2><p>Look at the programmes, people and funding behind your next move.</p></div><div className="finders__stage"><div className="finders__copy"><AnimatePresence mode="wait" initial={false}><motion.div key={active} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -24 }} transition={{ duration: .4, ease: EASE }}><h3>{current.title}</h3><p>{current.body}</p></motion.div></AnimatePresence><div className="finders__steps" aria-label="Finder chapters">{finderViews.map((view, i) => <span key={view.name} className={active === i ? "is-active" : ""}><b>{`0${i + 1}`}</b>{view.name}</span>)}</div></div><div className="finders__product"><AnimatePresence mode="wait" initial={false}><motion.div key={active} initial={{ opacity: 0, x: 50, scale: .96 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: -35, scale: .98 }} transition={{ duration: .46, ease: EASE }}><ProductFrame image={current.image} alt={current.alt} /></motion.div></AnimatePresence></div></div></div></div></section>;
+  return <section className={`finders ${reduced ? "finders--reduced" : ""}`} ref={ref} id="finders" aria-labelledby="finders-title" data-section="finders"><div className="finders__pin"><div className="wrap finders__inner"><div className="finders__header"><h2 id="finders-title">Explore your options.</h2><p>Look at the programmes, people and funding behind your next move.</p></div><div className="finders__stage"><div className="finders__copy"><AnimatePresence mode="wait" initial={false}><motion.div key={active} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -24 }} transition={{ duration: .4, ease: EASE }}><h3>{current.title}</h3><p>{current.body}</p></motion.div></AnimatePresence><div className="finders__steps" aria-label="Choose a finder">{finderViews.map((view, i) => <button type="button" key={view.name} aria-pressed={active === i} onClick={() => setActive(i)} className={active === i ? "is-active" : ""}><b>{`0${i + 1}`}</b><span>{view.name}</span><Arrow /></button>)}</div></div><div className="finders__product"><AnimatePresence mode="wait" initial={false}><motion.div key={active} initial={{ opacity: 0, x: 50, scale: .96 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: -35, scale: .98 }} transition={{ duration: .46, ease: EASE }}><ProductFrame image={current.image} alt={current.alt} /></motion.div></AnimatePresence></div></div></div></div></section>;
 }
 
 function Detail() {
@@ -94,7 +115,7 @@ function Profile() {
 
 function Planning() {
   const [active, setActive] = useState(0);
-  return <section className="planning" id="planning" aria-labelledby="planning-title" data-section="planning"><div className="wrap planning__inner"><div className="planning__top"><h2 id="planning-title">Give your next steps a place.</h2><p>Move from a promising option toward a considered application.</p></div><div className="planning__stage"><div className="planning__tabs" role="tablist" aria-label="Planning tools">{plans.map((plan, i) => <button type="button" role="tab" key={plan.name} id={`plan-${i}`} aria-selected={active === i} aria-controls="plan-panel" onClick={() => setActive(i)} className={active === i ? "is-active" : ""}><span>{plan.name}</span><small>{plan.body}</small><Arrow /></button>)}</div><div className="planning__screen" role="tabpanel" id="plan-panel" aria-labelledby={`plan-${active}`}><AnimatePresence mode="wait" initial={false}><motion.div key={active} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} transition={{ duration: .3, ease: EASE }}><ProductFrame image={plans[active].image} alt={plans[active].alt} /></motion.div></AnimatePresence></div></div><p className="planning__note">Shortlist Builder and Interview Prep currently show Ambitio Elite access gates.</p></div></section>;
+  return <section className="planning" id="planning" aria-labelledby="planning-title" data-section="planning"><div className="wrap planning__inner"><div className="planning__top"><h2 id="planning-title">Give your next steps a place.</h2><p>Move from a promising option toward a considered application.</p></div><div className={`planning__cards planning__cards--active-${active}`} aria-label="Explore planning tools">{plans.map((plan, i) => <button type="button" key={plan.name} aria-pressed={active === i} onClick={() => setActive(i)} className={`planning__card ${active === i ? "is-active" : ""}`}><span className="planning__card-top"><span>{plan.name}</span><Arrow /></span><span className="planning__card-image"><ProductFrame image={plan.image} alt={plan.alt} /></span><span className="planning__card-bottom"><span>{plan.body}</span><span>{active === i ? "Viewing this tool" : "Select to view"}</span></span></button>)}</div><p className="planning__note">These dashboard previews currently show Ambitio Elite access gates. <a href={DASHBOARD} target="_blank" rel="noopener noreferrer">Open the dashboard <Arrow /></a></p></div></section>;
 }
 
 function FAQ() {
